@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Global Computer Center | Enroll via WhatsApp</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.5;
+      color: #1e2a3e;
+      background: #f8fafc;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    /* Header / Nav - mobile first */
+    header {
+      background: #0a2b4e;
+      color: white;
+      padding: 12px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-img {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid #ffc107;
+    }
+
+    .logo-text h1 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .logo-text p {
+      font-size: 0.7rem;
+      color: #ffc107;
+    }
+
+    .menu-toggle {
+      display: block;
+      font-size: 1.8rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: white;
+      padding: 8px;
+      margin-left: auto;  /* ensures right alignment */
+    }
+
+    nav ul {
+      display: none;
+      flex-direction: column;
+      background: #0a2b4e;
+      position: absolute;
+      top: 70px;
+      right: 0;
+      left: auto;        /* dropdown from right side */
+      width: 250px;
+      padding: 20px;
+      gap: 18px;
+      text-align: right;  /* right aligned text on mobile */
+      list-style: none;
+      border-top: 1px solid #ffc10730;
+      box-shadow: -5px 10px 20px rgba(0,0,0,0.2);
+      border-radius: 0 0 0 20px;
+    }
+
+    nav ul.show {
+      display: flex;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      display: block;
+      padding: 10px;
+      transition: 0.2s;
+    }
+
+    nav ul li a:active {
+      background: #ffc10720;
+      border-radius: 30px;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #0a2b4e, #1e4a76);
+      color: white;
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      margin-bottom: 25px;
+      padding: 0 12px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #ffc107;
+      color: #0a2b4e;
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: 0.2s;
+      margin: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #ffc107;
+      color: #ffc107;
+    }
+
+    /* sections */
+    section {
+      padding: 50px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      color: #0a2b4e;
+      font-weight: 700;
+    }
+
+    .section-title::after {
+      content: '';
+      width: 60px;
+      height: 3px;
+      background: #ffc107;
+      display: block;
+      margin: 12px auto 0;
+      border-radius: 2px;
+    }
+
+    /* about */
+    .about-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .about-text p {
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+    }
+
+    .badge-ngo {
+      background: #e9f0f9;
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: inline-block;
+    }
+
+    .about-img img {
+      width: 100%;
+      border-radius: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    /* courses */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .course-card {
+      background: white;
+      padding: 22px 18px;
+      border-radius: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .course-card i {
+      font-size: 2.2rem;
+      color: #1e4a76;
+      margin-bottom: 12px;
+    }
+
+    .course-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+
+    /* services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .service-item {
+      background: white;
+      border-radius: 20px;
+      padding: 18px 10px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+    .service-item i {
+      font-size: 1.8rem;
+      color: #ffc107;
+      margin-bottom: 10px;
+    }
+
+    .service-item h4 {
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+
+    .service-item p {
+      font-size: 0.8rem;
+      color: #4a5568;
+    }
+
+    /* gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 12px;
+    }
+
+    .gallery-img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .gallery-img:active {
+      transform: scale(0.98);
+    }
+
+    /* contact section */
+    .contact-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .contact-info, .contact-form {
+      background: white;
+      padding: 24px;
+      border-radius: 28px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .info-detail {
+      margin: 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.9rem;
+      word-break: break-word;
+    }
+
+    .info-detail i {
+      width: 30px;
+      font-size: 1.2rem;
+      color: #1e4a76;
+    }
+
+    /* ---- Updated Map Container for Better Responsiveness ---- */
+    .map-container {
+      flex: 1;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      min-height: 300px; /* Ensures it looks good on all devices */
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 350px; /* Comfortable viewing height */
+      border: 0;
+      display: block;
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 16px;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+
+    .contact-form button {
+      background: #0a2b4e;
+      color: white;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 40px;
+      font-size: 1rem;
+      font-weight: 600;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .contact-form button:active {
+      background: #1e4a76;
+    }
+
+    /* Modal overlay */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.2s, opacity 0.2s;
+    }
+
+    .modal-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .modal {
+      background: white;
+      max-width: 90%;
+      width: 450px;
+      border-radius: 32px;
+      padding: 28px 22px;
+      position: relative;
+      box-shadow: 0 20px 35px rgba(0,0,0,0.3);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal h3 {
+      font-size: 1.6rem;
+      color: #0a2b4e;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .modal .close-modal {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #64748b;
+      transition: 0.2s;
+    }
+
+    .modal .close-modal:hover {
+      color: #0a2b4e;
+    }
+
+    .modal input, .modal select, .modal textarea {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border: 1px solid #cbd5e1;
+      border-radius: 20px;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+
+    .modal button[type="submit"] {
+      width: 100%;
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 40px;
+      font-weight: bold;
+      font-size: 1rem;
+      margin-top: 12px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .modal button[type="submit"]:active {
+      background: #128C7E;
+    }
+
+    .modal p.note {
+      font-size: 0.75rem;
+      text-align: center;
+      margin-top: 12px;
+      color: #475569;
+    }
+
+    /* footer */
+    footer {
+      background: #0a2b4e;
+      color: white;
+      text-align: center;
+      padding: 28px 16px;
+      font-size: 0.8rem;
+    }
+
+    /* tablet / desktop */
+    @media (min-width: 640px) {
+      .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+      .map-container iframe {
+        min-height: 400px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .menu-toggle {
+        display: none;
+      }
+      nav ul {
+        display: flex !important;
+        flex-direction: row;
+        position: static;
+        background: none;
+        width: auto;
+        padding: 0;
+        gap: 28px;
+        text-align: center;
+        box-shadow: none;
+        border-radius: 0;
+      }
+      .header-flex {
+        flex-wrap: nowrap;
+      }
+      .courses-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .contact-grid {
+        flex-direction: row;
+      }
+      .about-grid {
+        flex-direction: row;
+      }
+      nav ul li a {
+        text-align: center;
+      }
+      .map-container iframe {
+        min-height: 450px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-flex">
+      <div class="logo-area">
+        <img src="https://i.ibb.co/1t2WJZPD/logo.jpg" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/48?text=GCC'">
+        <div class="logo-text">
+          <h1>Global Computer Center</h1>
+          <p>Institute & IT Solutions</p>
+        </div>
+      </div>
+      <button class="menu-toggle" id="mobile-menu" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      <nav>
+        <ul id="nav-list">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container">
+        <h2>Empowering Bhagwangola<br>with Digital Skills</h2>
+        <p>Quality computer education & IT services in Mahishasthali. Affordable courses, expert trainers, and reliable support.</p>
+        <button id="enrollNowBtn" class="btn">📞 Enroll Now</button>
+        <a href="#courses" class="btn btn-outline">📚 View Courses</a>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About Us</h2>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>Global Computer Center is a leading computer training institute and IT service hub in Bhagwangola, Murshidabad. We bridge the digital divide with high-quality education and affordable IT support.</p>
+            <p>Modern lab, experienced faculty, and student-first approach. Hundreds of students trained in basic to advanced computer applications, hardware, networking, and accounting.</p>
+            <div class="badge-ngo">
+              <i class="fas fa-certificate"></i> NGO Reg: IV-120700061/2019
+            </div>
+            <p style="margin-top: 18px;"><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> Akhriganj - Bhagwangola Rd, near SWAPAN GARH MRE, Mahishasthali, Bhagwangola, West Bengal 742135</p>
+          </div>
+          <div class="about-img">
+            <img src="https://i.ibb.co/spZkdLbr/1.jpg" alt="Classroom" onerror="this.src='https://via.placeholder.com/400x300?text=Institute+Photo'">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="courses" style="background: #f1f5f9;">
+      <div class="container">
+        <h2 class="section-title">Our Courses</h2>
+        <div class="courses-grid">
+          <div class="course-card"><i class="fas fa-laptop-code"></i><h3>Basic Computer</h3><p>Windows, MS Office, Internet & Email</p></div>
+          <div class="course-card"><i class="fas fa-chart-line"></i><h3>Tally Prime</h3><p>GST, Accounting, Billing</p></div>
+          <div class="course-card"><i class="fas fa-microchip"></i><h3>Hardware & Networking</h3><p>PC assembly, LAN, troubleshooting</p></div>
+          <div class="course-card"><i class="fas fa-code"></i><h3>Web Design</h3><p>HTML, CSS, JavaScript, WordPress</p></div>
+          <div class="course-card"><i class="fas fa-database"></i><h3>DTP & Graphics</h3><p>Photoshop, CorelDRAW, Pagemaker</p></div>
+          <div class="course-card"><i class="fas fa-certificate"></i><h3>Diploma in Computer</h3><p>Advanced IT professional course</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+          <div class="service-item"><i class="fas fa-desktop"></i><h4>Computer Sales</h4><p>New/refurbished PCs, laptops</p></div>
+          <div class="service-item"><i class="fas fa-tools"></i><h4>Repair</h4><p>Hardware, OS, virus removal</p></div>
+          <div class="service-item"><i class="fas fa-print"></i><h4>Printing</h4><p>Color/B&W, scanning, copy</p></div>
+          <div class="service-item"><i class="fas fa-globe"></i><h4>Internet Browsing</h4><p>High-speed access</p></div>
+          <div class="service-item"><i class="fas fa-file-alt"></i><h4>Typing</h4><p>English/Bengali, data entry</p></div>
+          <div class="service-item"><i class="fas fa-network-wired"></i><h4>Networking</h4><p>WiFi, LAN, security</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" style="background: #ffffff;">
+      <div class="container">
+        <h2 class="section-title">Photo Gallery</h2>
+        <div class="gallery-grid" id="gallery-grid"></div>
+      </div>
+    </section>
+
+    <section id="contact" style="background: #f1f5f9;">
+      <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>Get in touch</h3>
+            <div class="info-detail"><i class="fas fa-map-marker-alt"></i><span>Akhriganj - Bhagwangola Rd, near SWAPAN GARH MRE, Mahishasthali, Bhagwangola, WB 742135</span></div>
+            <div class="info-detail"><i class="fas fa-phone-alt"></i><span>+91 98745 12345 / +91 99321 67890</span></div>
+            <div class="info-detail"><i class="fas fa-envelope"></i><span>info@globalcomputercenter.in</span></div>
+            <div class="info-detail"><i class="fab fa-whatsapp"></i><span>WhatsApp: 73843 63233</span></div>
+            <div class="badge-ngo" style="margin-top: 15px;"><i class="fas fa-clock"></i> Mon-Sat: 9AM – 8PM | Sunday Closed</div>
+          </div>
+
+          <!-- UPDATED: Precise Google Maps Embed for Global Computer Centre -->
+          <div class="map-container">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3289.93570484147!2d88.31149967480985!3d24.32916396631247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39fbcf3d434e43b3%3A0x2bb3302a870e3bf3!2sGLOBAL%20COMPUTER%20CENTRE!5e1!3m2!1sen!2sin!4v1777788223230!5m2!1sen!2sin" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Global Computer Centre Location Map">
+            </iframe>
+          </div>
+
+          <div class="contact-form">
+            <h3>Send a Message</h3>
+            <form id="queryForm">
+              <input type="text" placeholder="Your Name" required>
+              <input type="email" placeholder="Email Address" required>
+              <input type="tel" placeholder="Phone Number">
+              <textarea rows="4" placeholder="Your Message / Course Inquiry"></textarea>
+              <button type="submit">Submit <i class="fas fa-paper-plane"></i></button>
+            </form>
+            <p id="formMsg" style="margin-top: 12px; font-size:0.85rem;"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Global Computer Center | NGO Reg: IV-120700061/2019 | Empowering rural India with digital literacy</p>
+    </div>
+  </footer>
+
+  <!-- Enrollment Modal Popup -->
+  <div id="enrollModal" class="modal-overlay">
+    <div class="modal">
+      <span class="close-modal">&times;</span>
+      <h3><i class="fab fa-whatsapp"></i> Enroll Now</h3>
+      <p style="text-align:center; margin-bottom:15px;">Fill details & we'll receive your request on WhatsApp</p>
+      <form id="enrollmentForm">
+        <input type="text" id="studentName" placeholder="Full Name *" required>
+        <input type="tel" id="studentPhone" placeholder="Phone Number *" required>
+        <select id="courseInterest" required>
+          <option value="">-- Select Course --</option>
+          <option>Basic Computer</option>
+          <option>Tally Prime (Accounting)</option>
+          <option>Hardware & Networking</option>
+          <option>Web Design</option>
+          <option>DTP & Graphics</option>
+          <option>Diploma in Computer</option>
+          <option>Other / Custom</option>
+        </select>
+        <textarea id="extraMsg" rows="3" placeholder="Any message or preferred batch time..."></textarea>
+        <button type="submit">Send via WhatsApp <i class="fab fa-whatsapp"></i></button>
+        <p class="note">You will be redirected to WhatsApp. Just tap send.</p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // === Admin WhatsApp Number (updated to 73843 63233) ===
+    const ADMIN_WHATSAPP = "917384363233";   // country code 91 + 7384363233
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('mobile-menu');
+    const navList = document.getElementById('nav-list');
+    menuToggle.addEventListener('click', () => navList.classList.toggle('show'));
+    document.querySelectorAll('#nav-list a').forEach(link => {
+      link.addEventListener('click', () => navList.classList.remove('show'));
+    });
+
+    // Gallery images
+    const images = [
+      "https://i.ibb.co/k2CW98xB/8.jpg",
+      "https://i.ibb.co/sLB3VJh/7.jpg",
+      "https://i.ibb.co/PZL644dT/6.jpg",
+      "https://i.ibb.co/kg9cwm7J/5.jpg",
+      "https://i.ibb.co/xqNqd81G/4.jpg",
+      "https://i.ibb.co/SDGD2vsf/3.jpg",
+      "https://i.ibb.co/1t2WJZPD/logo.jpg",
+      "https://i.ibb.co/Z6P5Xypg/2.jpg",
+      "https://i.ibb.co/spZkdLbr/1.jpg"
+    ];
+    const gallery = document.getElementById('gallery-grid');
+    if (gallery) {
+      images.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.className = 'gallery-img';
+        img.alt = 'Gallery';
+        img.loading = 'lazy';
+        img.addEventListener('click', () => window.open(src, '_blank'));
+        gallery.appendChild(img);
+      });
+    }
+
+    // Modal logic
+    const modal = document.getElementById('enrollModal');
+    const enrollBtn = document.getElementById('enrollNowBtn');
+    const closeModal = document.querySelector('.close-modal');
+    const enrollmentForm = document.getElementById('enrollmentForm');
+
+    function openModal() {
+      modal.classList.add('active');
+    }
+    function closeModalFunc() {
+      modal.classList.remove('active');
+    }
+    enrollBtn.addEventListener('click', openModal);
+    closeModal.addEventListener('click', closeModalFunc);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModalFunc();
+    });
+
+    // Handle enrollment form submission -> WhatsApp message
+    enrollmentForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('studentName').value.trim();
+      const phone = document.getElementById('studentPhone').value.trim();
+      const course = document.getElementById('courseInterest').value;
+      const extra = document.getElementById('extraMsg').value.trim();
+
+      if (!name || !phone || !course) {
+        alert("Please fill Name, Phone, and select a Course.");
+        return;
+      }
+
+      // Build message content
+      let message = `*New Enrollment Request*%0A`;
+      message += `*Name:* ${encodeURIComponent(name)}%0A`;
+      message += `*Phone:* ${encodeURIComponent(phone)}%0A`;
+      message += `*Course:* ${encodeURIComponent(course)}%0A`;
+      if (extra) {
+        message += `*Message:* ${encodeURIComponent(extra)}%0A`;
+      }
+      message += `%0AFrom Global Computer Center Website`;
+
+      // Create WhatsApp deep link with the new number
+      const waLink = `https://wa.me/${ADMIN_WHATSAPP}?text=${message}`;
+      window.open(waLink, '_blank');
+
+      // Reset form and close modal
+      enrollmentForm.reset();
+      closeModalFunc();
+
+      // Small feedback
+      alert("Redirecting to WhatsApp. Please tap send to complete enrollment.");
+    });
+
+    // Existing contact form (non-whatsapp, just thank you)
+    const form = document.getElementById('queryForm');
+    const msgSpan = document.getElementById('formMsg');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        msgSpan.innerHTML = '<i class="fas fa-check-circle"></i> Thanks! We will contact you soon.';
+        msgSpan.style.color = '#0a2b4e';
+        form.reset();
+        setTimeout(() => msgSpan.innerHTML = '', 4000);
+      });
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = this.getAttribute('href');
+        if (target === "#" || target === "") return;
+        const el = document.querySelector(target);
+        if (el) {
+          e.preventDefault();
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
